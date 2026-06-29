@@ -9,7 +9,6 @@ dist-ssr
 *.local
 
 # Environment variables (never commit these)
-.env
 .env.local
 .env.*.local
 
