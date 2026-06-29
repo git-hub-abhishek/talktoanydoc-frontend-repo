@@ -75,3 +75,7 @@ export async function queryDocument(
 export async function getDocuments(idToken: string): Promise<Document[]> {
   return request<Document[]>('/documents', { method: 'GET' }, idToken)
 }
+
+export async function deleteDocument(documentId: string, idToken: string): Promise<void> {
+  await request<{ documentId: string; deleted: boolean }>(`/documents/${documentId}`, { method: 'DELETE' }, idToken)
+}

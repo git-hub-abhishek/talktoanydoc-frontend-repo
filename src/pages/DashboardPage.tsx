@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { getDocuments } from '../api/client'
+import { getDocuments, deleteDocument } from '../api/client'
 import { useDocumentUpload } from '../hooks/useDocumentUpload'
 import { FileUpload } from '../components/FileUpload'
 import { DocumentCard } from '../components/DocumentCard'
@@ -51,6 +51,14 @@ export function DashboardPage() {
     }
   }, [uploadState.status, fetchDocuments])
 
+  const handleDelete = useCallback(async (doc: Document) => {
+    if (!idToken) return
+    await deleteDocument(doc.documentId, idToken)
+    // Deselect if the deleted doc was open in the chat panel
+    setSelectedDoc(prev => prev?.documentId === doc.documentId ? null : prev)
+    setDocuments(prev => prev.filter(d => d.documentId !== doc.documentId))
+  }, [idToken])
+
   // Keep selected doc in sync with latest status from list
   useEffect(() => {
     if (!selectedDoc) return
@@ -96,6 +104,7 @@ export function DashboardPage() {
                   document={doc}
                   isSelected={selectedDoc?.documentId === doc.documentId}
                   onSelect={setSelectedDoc}
+                  onDelete={handleDelete}
                 />
               </li>
             ))}
