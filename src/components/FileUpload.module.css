@@ -1,0 +1,140 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: var(--color-surface);
+}
+
+.dropzone:hover:not(.uploading) {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.dragOver {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.uploading {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--color-bg);
+}
+
+.idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.uploadIcon {
+  color: var(--color-text-muted);
+}
+
+.dropzone:hover .uploadIcon,
+.dragOver .uploadIcon {
+  color: var(--color-primary);
+}
+
+.dropText {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.dropText strong {
+  color: var(--color-primary);
+}
+
+.hint {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.progressWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.statusText {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 280px;
+  height: 6px;
+  background-color: var(--color-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.progressLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.errorMsg {
+  text-align: center;
+}
+
+.successBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 2rem;
+  background-color: var(--color-success-light);
+  border: 1px solid #86efac;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.successIcon {
+  color: var(--color-success);
+}
+
+.successTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.successSub {
+  font-size: 0.875rem;
+  color: #166534;
+  max-width: 360px;
+}
